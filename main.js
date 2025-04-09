@@ -131,8 +131,6 @@ localStorage.setItem("hasLoggedIn", true);
 
 
 function saveGame(){
-    //Check if this is users first time logging in
-    localStorage.setItem("timesLoggedin", true);
     //saving user stats in local storage
     localStorage.setItem("playerMoney", cash);
     localStorage.setItem("playerAutoClicker", autoClicker);
@@ -182,6 +180,7 @@ let printCheck = () => {
 const testButton = document.getElementById('test'); //used for quick cash
 const testInfoButton = document.getElementById('testInfo'); //used to display info for debug
 const testStopButton = document.getElementById('testStop'); //to try and stop timer
+const resetGameButton = document.getElementById('restartGame');
 
 const buyAutoButton = document.getElementById("buyAutoClicker");
 const button1 = document.getElementById("button1");
@@ -255,6 +254,47 @@ const getCash = (num) => {
 const testCash = (num) => {
     cash += num * 10000;
     cashDisplay.innerHTML = cash;
+}
+const resetGame = () =>{
+ cash = 0;
+ autoClicker = 0;
+ rebirths = 0;
+ baseClicks = 1;
+ totalTimePlayed = 0;
+
+//OTHER VARIABLES
+ autoClickerPurchaseAmt = 1;
+ timeMultiplier = 1;
+  r = 255;
+  g = 0;
+  b = 0;
+ redCycle = true;
+ greenCycle = false;
+ blueCycle = false;
+ rgbClicks = 0;
+ rgbOn = false;
+
+//IMPORTANT BOOL
+ timeXUpgradePurchase = false;
+
+// Time tracking variables
+ timePlayedSec = 0;
+ timePlayedSec2nd = 0;
+ timePlayedMin = 0;
+ timePlayedMin2nd = 0;
+ timePlayedHour = 0;
+ timePlayedHour2nd = 0;
+
+// Time Accelerant Upgrade
+ timeAmountBought = 0;
+ timeSpeed = 1000;
+
+// Upgrade prices
+ clickerCost = Math.floor(10 * Math.pow(1.15,autoClicker));     
+ rebirthCost = Math.floor(1000 * Math.pow(2, rebirths));
+ timeUpgradeCost = Math.floor(2 * Math.pow(1.5, timeAmountBought));
+ timeXUpgradeCost = 1;
+ rgbCost = 10000;
 }
 
 
@@ -432,6 +472,7 @@ timeXUpgradeButton.addEventListener('click',()=>{
         testCash(1);
     })
     testInfoButton.addEventListener('click', printCheck);
+    resetGameButton.addEventListener('click', resetGame);
 
 
 
