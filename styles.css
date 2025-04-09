@@ -1,0 +1,48 @@
+:root{
+  --can-buy: #84DD63;
+  --cant-buy: rgb(217, 80, 80);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #545454;
+    color: #fff;
+    padding: 25px;
+    font-family: sans-serif;
+  }
+  
+  .title{
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .canBuy{
+    color: var(--can-buy);
+  }
+
+  .cantBuy{
+    color: var(--cant-buy);
+  }
+
+  button{
+    background-color: #69747c;
+    padding: 10px;
+  }
+
+  nav > ul{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    list-style: none;
+  }
+
+  nav > ul > li{
+    padding: 10px;
+    background-color: #69747c;
+    color: #84DD63;
+  }

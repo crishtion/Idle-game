@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+          <ul>
+            <li>
+                Time Played: <span id="hour2d">0</span><span id="hour1d">0</span>:<span id="minute2d">0</span><span id="minute1d">0</span>:<span id="second2d">0</span><span id="second1d">0</span>
+            </li>
+            <li>
+                Cash: <span id="cash">0</span>
+            </li>
+            <li>
+                Auto Clickers: <span id="clickers">0</span>
+            </li>
+            <li>
+                Rebirths: <span id="rebirths">0</span>
+            </li>
+          </ul>
+        </nav>
+        <h1 class="title">A Basic Idle Game</h1>
+      </header>
+    <main>
+            <!-- TEST BUTTONS -->
+            <button id="test">Generate TEST Cash</button>
+            <button id="testInfo">Generate TEST info</button>
+                                <!-- No longer Needed... -->
+            <!-- <button id="testStop">Stop interval timer</button> -->
+        <button id="button1">Generate Cash<br><span id="cpsDisplay">1</span> Cash per click</button>
+        <button id="buyAutoClicker">Buy Auto Clicker<br>Cost: <span id="clickerCost">10</span> Cash</button>
+        <button id="buyRebirth">Rebirth<br>Cost: <span id="rebirthCost">1000</span> Cash</button>
+        <button id="timeXUpgrade">Increase Cash by Time Played<br><span id="timeXCost">Cost: 1 Rebirths</span></button>
+        <button id="upgradeTime">Accelerate Time<br>Cost: <span id="timeCost">2</span> Rebirths</button>
+        <br>
+        <br>
+        <button id="buyRgb">RGB Background<br><span id="rgbCost">Cost: 10000 Cash</span></button>
+    </main>
+    
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
