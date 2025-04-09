@@ -1,39 +1,144 @@
-// Player Variables
-let cash = 0;
-let autoClicker = 0;
-let rebirths = 0;
-let baseClicks = 1;
-let totalTimePlayed = 0;
+//Initalize all variables
+    // Player Variables
+    let cash;
+    let autoClicker;
+    let rebirths;
+    let baseClicks;
+    let totalTimePlayed;
+
+    //OTHER VARIABLES
+    let autoClickerPurchaseAmt;
+    let timeMultiplier;
+    let  r;
+    let  g;
+    let  b;
+    let redCycle;
+    let greenCycle;
+    let blueCycle;
+    let rgbClicks;
+    let rgbOn;
+
+    //IMPORTANT BOOL
+    let timeXUpgradePurchase;
+
+    // Time tracking variables
+    let timePlayedSec;
+    let timePlayedSec2nd;
+    let timePlayedMin;
+    let timePlayedMin2nd;
+    let timePlayedHour;
+    let timePlayedHour2nd;
+
+    // Time Accelerant Upgrade
+    let timeAmountBought;
+    let timeSpeed;
+
+    // Upgrade prices
+    let clickerCost;     
+    let rebirthCost;
+    let timeUpgradeCost;
+    let timeXUpgradeCost;
+    let rgbCost;
+
+// Check if user has logged in before and assign values
+if(localStorage.getItem("hasLoggedIn")){
+
+    // Player Variables
+ cash = localStorage.getItem("playerMoney");
+ autoClicker = localStorage.getItem("playerAutoClicker");
+ rebirths = localStorage.getItem("playerRebirths");
+ baseClicks = localStorage.getItem("userClickPower");
+ totalTimePlayed = localStorage.getItem("userTimePlayed");
 
 //OTHER VARIABLES
-let autoClickerPurchaseAmt = 1;
-let timeMultiplier = 1;
-let  r = 255;
-let  g = 0;
-let  b = 0;
-let redCycle = true;
-let greenCycle = false;
-let blueCycle = false;
-let rgbClicks = 0;
-let rgbOn = false;
+ autoClickerPurchaseAmt = 1;
+ timeMultiplier = localStorage.getItem("currentTimeMult");
+  r = 255;
+  g = 0;
+  b = 0;
+ redCycle = true;
+ greenCycle = false;
+ blueCycle = false;
+ rgbClicks = 0;
+ rgbOn = false;
 
 //IMPORTANT BOOL
-let timeXUpgradePurchase = false;
+ timeXUpgradePurchase = localStorage.getItem("isTimeXpurchased");
 
 // Time tracking variables
-let timePlayedSec = 0;
-let timePlayedSec2nd = 0;
-let timePlayedMin = 0;
-let timePlayedMin2nd = 0;
-let timePlayedHour = 0;
-let timePlayedHour2nd = 0;
+ timePlayedSec = localStorage.getItem("1dSec");
+ timePlayedSec2nd = localStorage.getItem("2dSec");
+ timePlayedMin = localStorage.getItem("1dMin");
+ timePlayedMin2nd = localStorage.getItem("2dMin");
+ timePlayedHour = localStorage.getItem("1dHr");
+ timePlayedHour2nd = localStorage.getItem("2dHr");
+
+// Time Accelerant Upgrade
+ timeAmountBought = localStorage.getItem("numTime");
+ timeSpeed = localStorage.getItem("currentTickSpeed");
+
+// Upgrade prices
+ clickerCost = Math.floor(10 * Math.pow(1.15, localStorage.getItem("playerAutoClicker")));     
+ rebirthCost = Math.floor(1000 * Math.pow(2, localStorage.getItem("playerRebirths")));
+ timeUpgradeCost = Math.floor(2 * Math.pow(1.5, localStorage.getItem("numTimeXUpgradeBought")));
+ timeXUpgradeCost = 1;
+ rgbCost = 10000;
+
+} else {
+    // Player Variables
+ cash = 0;
+ autoClicker = 0;
+ rebirths = 0;
+ baseClicks = 1;
+ totalTimePlayed = 0;
+
+//OTHER VARIABLES
+ autoClickerPurchaseAmt = 1;
+ timeMultiplier = 1;
+  r = 255;
+  g = 0;
+  b = 0;
+ redCycle = true;
+ greenCycle = false;
+ blueCycle = false;
+ rgbClicks = 0;
+ rgbOn = false;
+
+//IMPORTANT BOOL
+ timeXUpgradePurchase = false;
+
+// Time tracking variables
+ timePlayedSec = 0;
+ timePlayedSec2nd = 0;
+ timePlayedMin = 0;
+ timePlayedMin2nd = 0;
+ timePlayedHour = 0;
+ timePlayedHour2nd = 0;
+
+// Time Accelerant Upgrade
+ timeAmountBought = 0;
+ timeSpeed = 1000;
+
+// Upgrade prices
+ clickerCost = Math.floor(10 * Math.pow(1.15,autoClicker));     
+ rebirthCost = Math.floor(1000 * Math.pow(2, rebirths));
+ timeUpgradeCost = Math.floor(2 * Math.pow(1.5, timeAmountBought));
+ timeXUpgradeCost = 1;
+ rgbCost = 10000;
+
+localStorage.setItem("hasLoggedIn", true);
+}
+
 
 function saveGame(){
+    //Check if this is users first time logging in
+    localStorage.setItem("timesLoggedin", true);
     //saving user stats in local storage
     localStorage.setItem("playerMoney", cash);
     localStorage.setItem("playerAutoClicker", autoClicker);
     localStorage.setItem("userClickPower", baseClicks);
-    localStorage.setItem("userTimePlayer", totalTimePlayed);
+    localStorage.setItem("userTimePlayed", totalTimePlayed);
+    localStorage.setItem("playerRebirths", rebirths);
     //saving other important vars in local storage
     localStorage.setItem("currentTickSpeed", timeSpeed)
     localStorage.setItem("currentTimeMult", timeMultiplier);
@@ -93,16 +198,6 @@ const buyRgbButton = document.getElementById('buyRgb');
     const hour1d = document.getElementById("hour1d");
     const hour2d = document.getElementById("hour2d");
 
-// Time Accelerant Upgrade
-let timeAmountBought = 0;
-let timeSpeed = 1000;
-
-// Upgrade prices
-let clickerCost = Math.floor(10 * Math.pow(1.15,autoClicker));     
-let rebirthCost = Math.floor(1000 * Math.pow(2, rebirths));
-let timeUpgradeCost = Math.floor(2 * Math.pow(1.5, timeAmountBought));
-let timeXUpgradeCost = 1;
-let rgbCost = 10000;
 
 // Check if upgrade is purchasable
 const checkPurchasable = () =>{
