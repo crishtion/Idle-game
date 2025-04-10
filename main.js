@@ -140,14 +140,6 @@ function saveGame() {
     localStorage.setItem("currentTimeMult", timeMultiplier);
     localStorage.setItem("isTimeXpurchased", timeXUpgradePurchase);
 
-    // saving time tracking
-    localStorage.setItem("1dSec", timePlayedSec);
-    localStorage.setItem("2dSec", timePlayedSec2nd);
-    localStorage.setItem("1dMin", timePlayedMin);
-    localStorage.setItem("2dMin", timePlayedMin2nd);
-    localStorage.setItem("1dHr", timePlayedHour);
-    localStorage.setItem("2dHr", timePlayedHour2nd);
-
     // saving upgrade info
     localStorage.setItem("numTimeXUpgradeBought", timeAmountBought);
     localStorage.setItem("costOfClicker", clickerCost);
@@ -620,7 +612,15 @@ function stopRgbLoopUpdate() {
 let mainGameLoopVar;
 
 function gameLoop(){
-    timePlayedUpdate();
+     // saving time tracking
+     localStorage.setItem("1dSec", timePlayedSec);
+     localStorage.setItem("2dSec", timePlayedSec2nd);
+     localStorage.setItem("1dMin", timePlayedMin);
+     localStorage.setItem("2dMin", timePlayedMin2nd);
+     localStorage.setItem("1dHr", timePlayedHour);
+     localStorage.setItem("2dHr", timePlayedHour2nd);
+     timePlayedUpdate();
+     
     timeMultiplier = Math.floor(1 * Math.pow(1.0085, totalTimePlayed));
     if(timeXUpgradePurchase == true){
         getCash(autoClicker * timeMultiplier);
