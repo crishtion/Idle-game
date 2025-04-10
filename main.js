@@ -296,6 +296,34 @@ const resetGame = () =>{
  timeUpgradeCost = Math.floor(2 * Math.pow(1.5, timeAmountBought));
  timeXUpgradeCost = 1;
  rgbCost = 10000;
+
+  // saving user stats
+  localStorage.setItem("playerMoney", cash);
+  localStorage.setItem("playerAutoClicker", autoClicker);
+  localStorage.setItem("userClickPower", baseClicks);
+  localStorage.setItem("userTimePlayed", totalTimePlayed);
+  localStorage.setItem("playerRebirths", rebirths);
+
+  // saving other variables
+  localStorage.setItem("currentTickSpeed", timeSpeed);
+  localStorage.setItem("currentTimeMult", timeMultiplier);
+  localStorage.setItem("isTimeXpurchased", timeXUpgradePurchase);
+
+  // saving time tracking
+  localStorage.setItem("1dSec", timePlayedSec);
+  localStorage.setItem("2dSec", timePlayedSec2nd);
+  localStorage.setItem("1dMin", timePlayedMin);
+  localStorage.setItem("2dMin", timePlayedMin2nd);
+  localStorage.setItem("1dHr", timePlayedHour);
+  localStorage.setItem("2dHr", timePlayedHour2nd);
+
+  // saving upgrade info
+  localStorage.setItem("numTimeXUpgradeBought", timeAmountBought);
+  localStorage.setItem("costOfClicker", clickerCost);
+  localStorage.setItem("costOfRebirth", rebirthCost);
+  localStorage.setItem("costOfTimeUpgrade", timeUpgradeCost);
+  localStorage.setItem("costOfTimeXUpgrade", timeXUpgradeCost);
+  localStorage.setItem("costOfRgb", rgbCost);
 }
 
 
