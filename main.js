@@ -354,6 +354,12 @@ const resetGame = () =>{
   localStorage.setItem("costOfTimeUpgrade", timeUpgradeCost);
   localStorage.setItem("costOfTimeXUpgrade", timeXUpgradeCost);
   localStorage.setItem("costOfRgb", rgbCost);
+
+  document.getElementById('clickerCost').innerHTML = 10;
+  document.getElementById("rebirthCost").innerHTML = 1000;
+  clickerDisplay.innerHTML = autoClicker;
+  cashDisplay.innerHTML = cash;
+  rebirthDisplay.innerHTML = rebirths;
 }
 
 
