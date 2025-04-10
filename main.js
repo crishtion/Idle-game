@@ -257,6 +257,39 @@ const testCash = (num) => {
     cashDisplay.innerHTML = cash;
 }
 const resetGame = () =>{
+    //stop all elements from updating.
+    stopCheckLoopUpdate();
+    stopSaveGameLoop();
+    stopRgbLoopUpdate();
+    stopGameLoopUpdate();
+//Clear user stats
+localStorage.removeItem("playerMoney");
+localStorage.removeItem("playerAutoClicker");
+localStorage.removeItem("userClickPower");
+localStorage.removeItem("userTimePlayed");
+localStorage.removeItem("playerRebirths");
+
+// clear other variables
+localStorage.removeItem("currentTickSpeed");
+localStorage.removeItem("currentTimeMult");
+localStorage.removeItem("isTimeXpurchased");
+
+// clear time tracking
+localStorage.removeItem("1dSec");
+localStorage.removeItem("2dSec");
+localStorage.removeItem("1dMin");
+localStorage.removeItem("2dMin");
+localStorage.removeItem("1dHr");
+localStorage.removeItem("2dHr");
+
+// clear upgrade info
+localStorage.removeItem("numTimeXUpgradeBought");
+localStorage.removeItem("costOfClicker");
+localStorage.removeItem("costOfRebirth");
+localStorage.removeItem("costOfTimeUpgrade");
+localStorage.removeItem("costOfTimeXUpgrade");
+localStorage.removeItem("costOfRgb");
+
  cash = 0;
  autoClicker = 0;
  rebirths = 0;
@@ -297,33 +330,6 @@ const resetGame = () =>{
  timeXUpgradeCost = 1;
  rgbCost = 10000;
 
-  //Clear user stat
-  localStorage.removeItem("playerMoney");
-  localStorage.removeItem("playerAutoClicker");
-  localStorage.removeItem("userClickPower");
-  localStorage.removeItem("userTimePlayed");
-  localStorage.removeItem("playerRebirths");
-
-  // saving other variables
-  localStorage.removeItem("currentTickSpeed");
-  localStorage.removeItem("currentTimeMult");
-  localStorage.removeItem("isTimeXpurchased");
-
-  // saving time tracking
-  localStorage.removeItem("1dSec");
-  localStorage.removeItem("2dSec");
-  localStorage.removeItem("1dMin");
-  localStorage.removeItem("2dMin");
-  localStorage.removeItem("1dHr");
-  localStorage.removeItem("2dHr");
-
-  // saving upgrade info
-  localStorage.removeItem("numTimeXUpgradeBought");
-  localStorage.removeItem("costOfClicker");
-  localStorage.removeItem("costOfRebirth");
-  localStorage.removeItem("costOfTimeUpgrade");
-  localStorage.removeItem("costOfTimeXUpgrade");
-  localStorage.removeItem("costOfRgb");
 
   //UPDATE USER STATS
 
@@ -360,12 +366,19 @@ const resetGame = () =>{
   clickerDisplay.innerHTML = autoClicker;
   cashDisplay.innerHTML = cash;
   rebirthDisplay.innerHTML = rebirths;
-  second1d = timePlayedSec;
-  second2d = timePlayedSec2nd;
-  minute1d = timePlayedMin;
-  minute2d = timePlayedMin2nd;
-  hour1d = timePlayedHour;
-  hour2d = timePlayedHour2nd;
+  second1d.innerHTML = timePlayedSec;
+  second2d.innerHTML = timePlayedSec2nd;
+  minute1d.innerHTML = timePlayedMin;
+  minute2d.innerHTML = timePlayedMin2nd;
+  hour1d.innerHTML = timePlayedHour;
+  hour2d.innerHTML = timePlayedHour2nd;
+
+//Start Game Again
+saveGame();
+rgbLoopUpdate();
+checkLoopUpdate();
+gameLoopUpdate();
+saveGameLoopUpdate();
 }
 
 
@@ -505,38 +518,43 @@ const timePlayedUpdate = () =>{
     if(timePlayedSec2nd > 5){
         timePlayedSec = 0;
         timePlayedSec2nd = 0;
-        second1d.innerHTML = Number(localStorage.getItem("1dSec"))|| 0;;
-        second2d.innerHTML = Number(localStorage.getItem("2dSec"))|| 0;;
+        second1d.innerHTML = Number(localStorage.getItem("1dSec"))|| 0;
+        second2d.innerHTML = Number(localStorage.getItem("2dSec"))|| 0;
         timePlayedMin++;
-        minute1d.innerHTML = Number(localStorage.getItem("1dMin"))|| 0;;
+        minute1d.innerHTML = Number(localStorage.getItem("1dMin"))|| 0;
     }
     if(timePlayedMin > 9){
         timePlayedSec = 0;
         timePlayedSec2nd = 0;
         timePlayedMin = 0;
-        second1d.innerHTML = Number(localStorage.getItem("1dSec"))|| 0;;
-        second2d.innerHTML = Number(localStorage.getItem("2dSec"))|| 0;;
-        minute1d.innerHTML = Number(localStorage.getItem("1dMin"))|| 0;;
+        second1d.innerHTML = Number(localStorage.getItem("1dSec"))|| 0;
+        second2d.innerHTML = Number(localStorage.getItem("2dSec"))|| 0;
+        minute1d.innerHTML = Number(localStorage.getItem("1dMin"))|| 0;
         timePlayedMin2nd++;
-        minute2d.innerHTML = Number(localStorage.getItem("2dMin"))|| 0;;
+        minute2d.innerHTML = Number(localStorage.getItem("2dMin"))|| 0;
     }
 }
 
 // Link Buttons to Buy 
 buyAutoButton.addEventListener('click',()=>{
     getAutoClicker();
+    saveGame();
 })
 button1.addEventListener('click',()=>{
     getCash(baseClicks);
+    saveGame();
 })
 rebirthButton.addEventListener('click',()=>{
     buyRebirth();
+    saveGame();
 })
 timeUpgradeButton.addEventListener('click',()=>{
     timeUpgrade();
+    saveGame();
 })
 timeXUpgradeButton.addEventListener('click',()=>{
     timeXUpgrade();
+    saveGame();
 })
     //Test buttons
     testButton.addEventListener('click',()=>{
@@ -557,6 +575,10 @@ function saveGameLoop(){
 
 function saveGameLoopUpdate(){
     saveGameInterval = setInterval(saveGameLoop, 5000);
+}
+
+function stopSaveGameLoop () {
+    clearInterval(saveGameInterval);
 }
 
 // Check for purchases available
