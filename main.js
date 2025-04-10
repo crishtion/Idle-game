@@ -297,6 +297,36 @@ const resetGame = () =>{
  timeXUpgradeCost = 1;
  rgbCost = 10000;
 
+  //Clear user stat
+  localStorage.removeItem("playerMoney");
+  localStorage.removeItem("playerAutoClicker");
+  localStorage.removeItem("userClickPower");
+  localStorage.removeItem("userTimePlayed");
+  localStorage.removeItem("playerRebirths");
+
+  // saving other variables
+  localStorage.removeItem("currentTickSpeed");
+  localStorage.removeItem("currentTimeMult");
+  localStorage.removeItem("isTimeXpurchased");
+
+  // saving time tracking
+  localStorage.removeItem("1dSec");
+  localStorage.removeItem("2dSec");
+  localStorage.removeItem("1dMin");
+  localStorage.removeItem("2dMin");
+  localStorage.removeItem("1dHr");
+  localStorage.removeItem("2dHr");
+
+  // saving upgrade info
+  localStorage.removeItem("numTimeXUpgradeBought");
+  localStorage.removeItem("costOfClicker");
+  localStorage.removeItem("costOfRebirth");
+  localStorage.removeItem("costOfTimeUpgrade");
+  localStorage.removeItem("costOfTimeXUpgrade");
+  localStorage.removeItem("costOfRgb");
+
+  //UPDATE USER STATS
+
   // saving user stats
   localStorage.setItem("playerMoney", cash);
   localStorage.setItem("playerAutoClicker", autoClicker);
