@@ -360,6 +360,12 @@ const resetGame = () =>{
   clickerDisplay.innerHTML = autoClicker;
   cashDisplay.innerHTML = cash;
   rebirthDisplay.innerHTML = rebirths;
+  second1d = timePlayedSec;
+  second2d = timePlayedSec2nd;
+  minute1d = timePlayedMin;
+  minute2d = timePlayedMin2nd;
+  hour1d = timePlayedHour;
+  hour2d = timePlayedHour2nd;
 }
 
 
@@ -489,30 +495,30 @@ if(rgbOn){
 const timePlayedUpdate = () =>{
     timePlayedSec++;
     totalTimePlayed++;
-    second1d.innerHTML = timePlayedSec;
+    second1d.innerHTML = Number(localStorage.getItem("1dSec"))|| 0;
     if(timePlayedSec > 9){
         timePlayedSec = 0;
         second1d.innerHTML = 0;
         timePlayedSec2nd++;
-        second2d.innerHTML = timePlayedSec2nd;
+        second2d.innerHTML = Number(localStorage.getItem("2dSec"))|| 0;
     }
     if(timePlayedSec2nd > 5){
         timePlayedSec = 0;
         timePlayedSec2nd = 0;
-        second1d.innerHTML = 0;
-        second2d.innerHTML = 0;
+        second1d.innerHTML = Number(localStorage.getItem("1dSec"))|| 0;;
+        second2d.innerHTML = Number(localStorage.getItem("2dSec"))|| 0;;
         timePlayedMin++;
-        minute1d.innerHTML = timePlayedMin;
+        minute1d.innerHTML = Number(localStorage.getItem("1dMin"))|| 0;;
     }
     if(timePlayedMin > 9){
         timePlayedSec = 0;
         timePlayedSec2nd = 0;
         timePlayedMin = 0;
-        second1d.innerHTML = 0;
-        second2d.innerHTML = 0;
-        minute1d.innerHTML = 0;
+        second1d.innerHTML = Number(localStorage.getItem("1dSec"))|| 0;;
+        second2d.innerHTML = Number(localStorage.getItem("2dSec"))|| 0;;
+        minute1d.innerHTML = Number(localStorage.getItem("1dMin"))|| 0;;
         timePlayedMin2nd++;
-        minute2d.innerHTML = timePlayedMin2nd;
+        minute2d.innerHTML = Number(localStorage.getItem("2dMin"))|| 0;;
     }
 }
 
