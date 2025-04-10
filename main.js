@@ -157,6 +157,33 @@ function saveGame(){
     localStorage.setItem("costOfRgb", rgbCost);
 }
 
+function saveGame(){
+    //saving user stats in local storage
+    localStorage.setItem("playerMoney", cash);
+    localStorage.setItem("playerAutoClicker", autoClicker);
+    localStorage.setItem("userClickPower", baseClicks);
+    localStorage.setItem("userTimePlayed", totalTimePlayed);
+    localStorage.setItem("playerRebirths", rebirths);
+    //saving other important vars in local storage
+    localStorage.setItem("currentTickSpeed", timeSpeed)
+    localStorage.setItem("currentTimeMult", timeMultiplier);
+    localStorage.setItem("isTimeXpurchased", timeXUpgradePurchase);
+    //saving time display variables
+    localStorage.setItem("1dSec", timePlayedSec);
+    localStorage.setItem("2dSec", timePlayedSec2nd);
+    localStorage.setItem("1dMin", timePlayedMin);
+    localStorage.setItem("2dMin", timePlayedMin2nd);
+    localStorage.setItem("1dHr", timePlayedHour);
+    localStorage.setItem("2dHr", timePlayedHour2nd);
+    //saving the current upgrade and prices
+    localStorage.setItem("numTimeXUpgradeBought", timeAmountBought);
+    localStorage.setItem("costOfClicker", clickerCost);
+    localStorage.setItem("costOfRebirth", rebirthCost);
+    localStorage.setItem("costOfTimeUpgrade", timeUpgradeCost);
+    localStorage.setItem("costOfTimeXUpgrade", timeXUpgradeCost);
+    localStorage.setItem("costOfRgb", rgbCost);
+}
+
 //CHECK VARIABLES FOR TESTING PURPOSES
 let printCheck = () => {
     console.log(`Current cash: ${cash}`);
@@ -484,7 +511,7 @@ function saveGameLoop(){
 }
 
 function saveGameLoopUpdate(){
-    saveGameInterval = setInterval(saveGameLoop, 50);
+    saveGameInterval = setInterval(saveGameLoop, 5000);
 }
 
 // Check for purchases available
